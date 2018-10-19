@@ -9,7 +9,7 @@
         
         </div>
 
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=mitam.database.windows.net;Initial Catalog=MajorIT;Persist Security Info=True;User ID=Carl;Password=Majorit2!" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [UserID], [FirstName], [LastName], [JobTitle], [Email] FROM [Users]" DeleteCommand="DELETE FROM [Users] WHERE [UserID] = @UserID" InsertCommand="INSERT INTO [Users] ([UserID], [FirstName], [LastName], [JobTitle], [Email]) VALUES (@UserID, @FirstName, @LastName, @JobTitle, @Email)" UpdateCommand="UPDATE [Users] SET [FirstName] = @FirstName, [LastName] = @LastName, [JobTitle] = @JobTitle, [Email] = @Email WHERE [UserID] = @UserID">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MITAMconnectionString %>" SelectCommand="SELECT [UserID], [FirstName], [LastName], [JobTitle], [Email] FROM [Users]" DeleteCommand="DELETE FROM [Users] WHERE [UserID] = @UserID" InsertCommand="INSERT INTO [Users] ([UserID], [FirstName], [LastName], [JobTitle], [Email]) VALUES (@UserID, @FirstName, @LastName, @JobTitle, @Email)" UpdateCommand="UPDATE [Users] SET [FirstName] = @FirstName, [LastName] = @LastName, [JobTitle] = @JobTitle, [Email] = @Email WHERE [UserID] = @UserID">
             <DeleteParameters>
                 <asp:Parameter Name="UserID" Type="String" />
             </DeleteParameters>
