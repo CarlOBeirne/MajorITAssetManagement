@@ -32,5 +32,10 @@ namespace WebApplication1.Account
                 ErrorMessage.Text = result.Errors.FirstOrDefault();
             }
         }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
