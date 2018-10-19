@@ -22,10 +22,7 @@
 
     </asp:GridView>
     
-    
-
-<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MajorITConnectionString %>" SelectCommand="SELECT [TicketID], [TicketTitle], [TicketDetails], [UrgencyID], [SystemID], [UserID] FROM [Tickets]"></asp:SqlDataSource>
-    
+      
     
 
 </asp:Content>
