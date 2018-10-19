@@ -33,7 +33,7 @@
 
 
         <div class="userList" style="margin-left: 10%">
-            <asp:Button ID="Button1" runat="server" Text="Add User" />
+            <asp:Button ID="Button1" runat="server" Text="Add User" OnClick="Button1_Click" />
             <asp:GridView ID="XmlGridView" runat="server" style="margin-top:5%; width: 90%;" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" ShowFooter="True" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="UserID" AllowPaging="True" AllowSorting="True" >
             <AlternatingRowStyle BackColor="#DCDCDC" />
               

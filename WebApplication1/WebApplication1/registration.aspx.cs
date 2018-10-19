@@ -32,14 +32,18 @@ namespace WebApplication1
         {
             try
             {
+                Guid newGUID = Guid.NewGuid();
+
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MITAMconnectionString"].ConnectionString);
                 conn.Open();
-                string insertQuery = "inset into Users (FirstName,LastName,JobTitle,Email,PasswordHash,RoleID) values (@FirstName , @LastName , @JobTitle , @Email , @PasswordHash , @RoleID)";
+                string insertQuery = "insert into Users (UserID,FirstName,LastName,JobTitle,Email,PasswordHash,RoleID) values (@UserID ,@FirstName , @LastName , @JobTitle , @Email , @PasswordHash , @RoleID)";
                 SqlCommand com = new SqlCommand(insertQuery, conn);
+                com.Parameters.AddWithValue("@UserID", newGUID.ToString());
                 com.Parameters.AddWithValue("@FirstName", FirstName.Text);
                 com.Parameters.AddWithValue("@LastName", LastName.Text);
                 com.Parameters.AddWithValue("@JobTitle", JobTitle.Text);
-                com.Parameters.AddWithValue("@Email", PasswordHash.Text);
+                com.Parameters.AddWithValue("@Email", Email.Text);
+                com.Parameters.AddWithValue("@PasswordHash", PasswordHash.Text);
                 com.Parameters.AddWithValue("@RoleID", RoleID.SelectedItem.Text);
 
                 com.ExecuteNonQuery();
