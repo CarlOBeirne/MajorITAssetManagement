@@ -9,32 +9,58 @@
         
         </div>
 
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" DeleteCommand="DELETE FROM [AspNetUsers] WHERE [Id] = @Id" InsertCommand="INSERT INTO [AspNetUsers] ([Id], [UserName], [Email], [EmailConfirmed]) VALUES (@Id, @UserName, @Email, @EmailConfirmed)" SelectCommand="SELECT [Id], [UserName], [Email], [EmailConfirmed] FROM [AspNetUsers]" UpdateCommand="UPDATE [AspNetUsers] SET [UserName] = @UserName, [Email] = @Email, [EmailConfirmed] = @EmailConfirmed WHERE [Id] = @Id">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=mitam.database.windows.net;Initial Catalog=MajorIT;Persist Security Info=True;User ID=Carl;Password=Majorit2!" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [UserID], [FirstName], [LastName], [JobTitle], [Email] FROM [Users]" DeleteCommand="DELETE FROM [Users] WHERE [UserID] = @UserID" InsertCommand="INSERT INTO [Users] ([UserID], [FirstName], [LastName], [JobTitle], [Email]) VALUES (@UserID, @FirstName, @LastName, @JobTitle, @Email)" UpdateCommand="UPDATE [Users] SET [FirstName] = @FirstName, [LastName] = @LastName, [JobTitle] = @JobTitle, [Email] = @Email WHERE [UserID] = @UserID">
             <DeleteParameters>
-                <asp:Parameter Name="Id" Type="String" />
+                <asp:Parameter Name="UserID" Type="String" />
             </DeleteParameters>
-
             <InsertParameters>
-                <asp:Parameter Name="Id" Type="String" />
-                <asp:Parameter Name="UserName" Type="String" />
+                <asp:Parameter Name="UserID" Type="String" />
+                <asp:Parameter Name="FirstName" Type="String" />
+                <asp:Parameter Name="LastName" Type="String" />
+                <asp:Parameter Name="JobTitle" Type="String" />
                 <asp:Parameter Name="Email" Type="String" />
-                <asp:Parameter Name="EmailConfirmed" Type="Boolean" />
             </InsertParameters>
-
             <UpdateParameters>
-                <asp:Parameter Name="UserName" Type="String" />
+                <asp:Parameter Name="FirstName" Type="String" />
+                <asp:Parameter Name="LastName" Type="String" />
+                <asp:Parameter Name="JobTitle" Type="String" />
                 <asp:Parameter Name="Email" Type="String" />
-               <asp:Parameter Name="EmailConfirmed" Type="Boolean" />
-                <asp:Parameter Name="Id" Type="String" />
+                <asp:Parameter Name="UserID" Type="String" />
             </UpdateParameters>
         </asp:SqlDataSource>
+
     <div class="clearfix" style="clear: both"></div>
 
 
         <div class="userList" style="margin-left: 10%">
             <asp:Button ID="Button1" runat="server" Text="Add User" />
-            <asp:GridView ID="XmlGridView" runat="server" style="margin-top:5%; width: 90%;" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" ShowFooter="True" DataSourceID="SqlDataSource1">
+            <asp:GridView ID="XmlGridView" runat="server" style="margin-top:5%; width: 90%;" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" ShowFooter="True" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="UserID" AllowPaging="True" AllowSorting="True" >
             <AlternatingRowStyle BackColor="#DCDCDC" />
+              
+
+                <Columns>
+                    <asp:BoundField DataField="UserID" HeaderText="UserID" ReadOnly="True" SortExpression="UserID" />
+                    <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
+                    <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
+                    <asp:BoundField DataField="JobTitle" HeaderText="JobTitle" SortExpression="JobTitle" />
+                    <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
+
+
+                    <asp:TemplateField HeaderText="Operations">
+
+                        <ItemTemplate>
+                            <asp:Button ID="BtnEdit" runat="server" CommandName="Edit" Text="Edit" class="btn btn-default"/>
+                            <asp:Button ID="BtnDelete" runat="server" CommandName="Delete" Text="Delete" class="btn btn-default"/>
+                        </ItemTemplate>
+
+
+                        <EditItemTemplate>
+                            <asp:Button ID="BthUpdate" runat="server" CommandName="Update" Text="Update" class="btn btn-default"/>
+                            <asp:Button ID="BtnCancel" runat="server" CommandName="Cancel" Text="Cancel" class="btn btn-default"/>
+                        </EditItemTemplate>
+
+                    </asp:TemplateField>
+                </Columns>
               
 
                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
