@@ -27,9 +27,13 @@ namespace WebApplication1
                 string insertQuery = "insert into Tickets (TicketID,TicketTitle,TicketDetails,UrgencyID,UserID) values (@TicketID,@TicketTitle,@TicketDetails,@UrgencyID,@UserID)";
                 SqlCommand com = new SqlCommand(insertQuery, conn);
                 com.Parameters.AddWithValue("@TicketID", newGUID.ToString());
+                object TicketTitle = null;
                 com.Parameters.AddWithValue("@TicketTitle", TicketTitle.Text);
+                object TicketDetails = null;
                 com.Parameters.AddWithValue("@TicketDetails", TicketDetails.Text);
+                object UrgencyID = null;
                 com.Parameters.AddWithValue("@UrgencyID", UrgencyID.SelectedItem.Text);
+                object UserID = null;
                 com.Parameters.AddWithValue("@UserID", UserID.SelectedItem.Text);
                 
 
