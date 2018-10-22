@@ -9,7 +9,7 @@
         
         </div>
 
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=mitam.database.windows.net;Initial Catalog=MajorIT;Persist Security Info=True;User ID=Carl;Password=Majorit2!" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [UserID], [FirstName], [LastName], [JobTitle], [Email] FROM [Users]" DeleteCommand="DELETE FROM [Users] WHERE [UserID] = @UserID" InsertCommand="INSERT INTO [Users] ([UserID], [FirstName], [LastName], [JobTitle], [Email]) VALUES (@UserID, @FirstName, @LastName, @JobTitle, @Email)" UpdateCommand="UPDATE [Users] SET [FirstName] = @FirstName, [LastName] = @LastName, [JobTitle] = @JobTitle, [Email] = @Email WHERE [UserID] = @UserID">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MITAMconnectionString %>" SelectCommand="SELECT [UserID], [FirstName], [LastName], [JobTitle], [Email] FROM [Users]" DeleteCommand="DELETE FROM [Users] WHERE [UserID] = @UserID" InsertCommand="INSERT INTO [Users] ([UserID], [FirstName], [LastName], [JobTitle], [Email]) VALUES (@UserID, @FirstName, @LastName, @JobTitle, @Email)" UpdateCommand="UPDATE [Users] SET [FirstName] = @FirstName, [LastName] = @LastName, [JobTitle] = @JobTitle, [Email] = @Email WHERE [UserID] = @UserID">
             <DeleteParameters>
                 <asp:Parameter Name="UserID" Type="String" />
             </DeleteParameters>
@@ -33,7 +33,7 @@
 
 
         <div class="userList" style="margin-left: 10%">
-            <asp:Button ID="Button1" runat="server" Text="Add User" />
+            <asp:Button ID="Button1" runat="server" Text="Add User" OnClick="Button1_Click" />
             <asp:GridView ID="XmlGridView" runat="server" style="margin-top:5%; width: 90%;" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" ShowFooter="True" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="UserID" AllowPaging="True" AllowSorting="True" >
             <AlternatingRowStyle BackColor="#DCDCDC" />
               
