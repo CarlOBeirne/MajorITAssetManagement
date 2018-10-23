@@ -1,4 +1,6 @@
-﻿namespace WebApplication1
+﻿using System;
+
+namespace WebApplication1
 {
     internal class SqlConnection
     {
@@ -7,6 +9,16 @@
         public SqlConnection(object connectionString)
         {
             this.connectionString = connectionString;
+        }
+
+        internal void Open()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void Close()
+        {
+            throw new NotImplementedException();
         }
     }
 }

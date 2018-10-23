@@ -47,8 +47,8 @@ resize:none;
 }
 </style>
 <body>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=mitam.database.windows.net;Initial Catalog=MajorIT;User ID=Stephen" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [Email] FROM [Users]"></asp:SqlDataSource>
-    
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [Email] FROM [AspNetUsers]"></asp:SqlDataSource>
+    <asp:Label ID="Label1" runat="server" Text="Label"><%: Context.User.Identity.GetUserName()  %></asp:Label>
     
 <div id="ticketForm">
   <form action="/action_page.php">
