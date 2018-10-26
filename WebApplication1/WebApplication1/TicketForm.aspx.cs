@@ -16,32 +16,6 @@ namespace WebApplication1
             
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Guid newGUID = Guid.NewGuid();
-
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MITAMconnectionString"].ConnectionString);
-                conn.Open();
-                string insertQuery = "insert into Tickets (TicketID,TicketTitle,TicketDetails,UrgencyID,UserID) values (@TicketID,@TicketTitle,@TicketDetails,@UrgencyID,@UserID)";
-                SqlCommand com = new SqlCommand(insertQuery, conn);
-                com.Parameters.AddWithValue("@TicketID", newGUID.ToString());
-                com.Parameters.AddWithValue("@TicketDetails", TicketDetails.Text);
-                com.Parameters.AddWithValue("@UrgencyID", UrgencyID.SelectedItem.Text);
-
-
-                com.ExecuteNonQuery();
-                Response.Write("Registration successful");
-
-
-                conn.Close();
-            }
-
-            catch (Exception ex)
-            {
-                Response.Write("Error:" + ex.ToString());
-            }
-        }
+       
     }
 }
