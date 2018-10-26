@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="Users" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Users.aspx.cs" Inherits="WebApplication1.Users" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class ="row">
@@ -34,6 +33,7 @@
 
 
         <div class="userList" style="margin-left: 10%">
+            <asp:Button ID="Button1" runat="server" Text="Add User" OnClick="Button1_Click" />
             <asp:GridView ID="XmlGridView" runat="server" style="margin-top:5%; width: 90%;" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" ShowFooter="True" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="UserID" AllowPaging="True" AllowSorting="True" >
             <AlternatingRowStyle BackColor="#DCDCDC" />
               
@@ -76,8 +76,8 @@
 
         </div>
             
-        <asp:Button ID="Button1" runat="server" Text="Add User" style="background-color: #DCDCDC; color:#000; margin:2% 40% 0 40% ; width: 250px; font-size: 30px;" OnClick="Button1_Click"/>
-        
+
+
     </div>
 
 </asp:Content>
