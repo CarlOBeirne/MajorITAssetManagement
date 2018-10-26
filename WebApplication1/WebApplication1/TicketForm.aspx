@@ -5,22 +5,6 @@
 <h1> Ticketing Form</h1>
     </header>
 
-    <%--<asp:Label ID="Label1" runat="server" Text="E-mail"></asp:Label>
-    <br />
-
-
-    <asp:Label ID="Label2" runat="server" Text="Asset Type"></asp:Label>
-    <asp:DropDownList ID="DropDownList1" runat="server" Width="148px"></asp:DropDownList>
-    <br />
-
-
-    <asp:Label ID="Label3" runat="server" Text="Urgency Level"></asp:Label>
-    <asp:DropDownList ID="DropDownList2" runat="server" Width="154px"></asp:DropDownList>
-    <br />
-
-    <asp:Label ID="Label4" runat="server" Text="Issue Details"></asp:Label>
-    <asp:TextBox ID="Textbox1" runat="server" Height="94px" Width="162px"></asp:TextBox>--%>
-
     <!DOCTYPE html>
 <html>
 <style>
@@ -49,20 +33,35 @@ input[type=submit]:hover {
     background-color: #45a049;
 }
 
+#ticketForm{
+    margin: 0 15% 0 15%;
+}
+
+#IssueDetails {
+    width:100%
+
+    }
+textarea{
+resize:none;
+
+}
 </style>
 <body>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=mitam.database.windows.net;Initial Catalog=MajorIT;User ID=Stephen" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [Email] FROM [Users]"></asp:SqlDataSource>
-
-
-<div>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [Email] FROM [AspNetUsers]"></asp:SqlDataSource>
+    <asp:Label ID="Label1" runat="server" Text="Label"><%: Context.User.Identity.GetUserName()  %></asp:Label>
+    
+<div id="ticketForm">
   <form action="/action_page.php">
-    <label for="Email">Your Email</label>
-      <asp:Label ID="LabelEmail" runat="server" Text="<%# Bind("Email") %>"></asp:Label>
+    <label for="Email">Your Email:</label>
       <br />
 
+   <label for="TicketTitle">Ticket Title:</label>
+      <br />
+      <asp:TextBox ID="TicketTitle" runat="server"></asp:TextBox>
+      <br />
   
       
-    <label for="AssetType">Asset Type</label>
+    <label for="AssetType">Asset Type:</label>
     <select id="AssetType" name="AssetType">
       <option value="Laptop">Laptop</option>
       <option value="Monitor">Monitor</option>
@@ -70,20 +69,20 @@ input[type=submit]:hover {
     </select>
     <br />
 
-      <label for="Urgency">Urgency Level</label>
-    <select id="Urgency" name="Urgency">
-      <option value="UrgencyHigh">High</option>
-      <option value="UrgencyMedium">Medium</option>
-      <option value="UrgencyLow">Low</option>
-    </select>
+      <label for="UrgencyLevel">Urgency Level:</label>
+      <br />
+      <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:MITAMconnectionString %>" SelectCommand="SELECT [UrgencyLevel] FROM [Urgency]"></asp:SqlDataSource>
+      <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" DataTextField="UrgencyLevel" DataValueField="UrgencyLevel"></asp:DropDownList>
     <br />
 
-        <label for="IssueDetails">Issue Details</label>
-    <input type="text" id="IssueDetails" name="IssueDetails" placeholder="Whats the issue..">
+        <label for="IssueDetails">Issue Details:</label>
+      <br />
+    <textarea id="IssueDetails" name="IssueDetails" placeholder="Whats the issue.."></textarea>
       <br />
 
+      <asp:Button ID="Button1" runat="server" Text="Button" />
 
-      <input type="submit" value="Submit">
+      
   
   </form>
 </div>
