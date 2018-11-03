@@ -1,7 +1,31 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="TicketView.aspx.cs" Inherits="WebApplication1.TicketView" %>
+
+<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-   
+    <style>
+        .Tv_Title {
+        
+            text-align:center;
+            font-size:large;
+        
+        }
+        .Chart1 {
+        
+            text-align:right;
+            margin-Right:100px;
+        }
+        .GridView {
+       
+            float:left;        
+        }
+
+
+    </style>
+            <p class="Tv_Title">
+                Tickets
+            </p>
+               
 
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MITAMconnectionString %>" DeleteCommand="DELETE FROM [Users] WHERE [UserID] = @UserID" InsertCommand="INSERT INTO [Users] ([UserID], [FirstName], [Email]) VALUES (@UserID, @FirstName, @Email)" SelectCommand="SELECT [UserID], [FirstName], [Email] FROM [Users]" UpdateCommand="UPDATE [Users] SET [FirstName] = @FirstName, [Email] = @Email WHERE [UserID] = @UserID">
         <DeleteParameters>
@@ -19,7 +43,8 @@
         </UpdateParameters>
     </asp:SqlDataSource> 
     
-    <asp:GridView ID="GridView1"  runat="server" style="margin-top:5%; width: 90%;" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" ShowFooter="True" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="UserID" AllowPaging="True" AllowSorting="True">
+    <div class="GridView"> 
+    <asp:GridView ID="GridView1"  runat="server" style="margin-top:5%; " BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" ShowFooter="True" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="UserID" AllowPaging="True" AllowSorting="True" Width="667px">
         <AlternatingRowStyle BackColor="#DCDCDC" />
         <Columns>
                 <asp:BoundField DataField="UserID" HeaderText="UserID" ReadOnly="True" SortExpression="UserID" />
@@ -41,5 +66,37 @@
                 <SortedDescendingHeaderStyle BackColor="#000065" />
 
     </asp:GridView>
+    </div>
+  
+    <div class="Chart1">
+    
+        <asp:Chart id="Chart1" runat="server" DataSourceID="SqlDataSource3" Height="290px" Width="451px">
+        <Series>
+            <asp:Series Name="Series1" XValueMember="TicketID" ChartType="Spline"></asp:Series>
+        </Series>
+        <ChartAreas>
+            <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+        </ChartAreas>
+    </asp:Chart>
+       
+        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:MITAMconnectionString %>" SelectCommand="SELECT [TicketID] FROM [Tickets]"></asp:SqlDataSource>
+       
+    </div>
         
+
+    
+
+    
+
+
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:MITAMconnectionString %>" SelectCommand="SELECT * FROM [Users]"></asp:SqlDataSource>
+        
+
+        
+
+    
+
+    
+
+
 </asp:Content>
