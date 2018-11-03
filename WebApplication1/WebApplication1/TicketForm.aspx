@@ -55,6 +55,10 @@ resize:none;
     <label for="Email">Your Email:</label>
       <br />
 
+   <label for="TicketTitle">Ticket Title:</label>
+      <br />
+      <asp:TextBox ID="TicketTitle" runat="server"></asp:TextBox>
+      <br />
   
       
     <label for="AssetType">Asset Type:</label>
@@ -76,9 +80,9 @@ resize:none;
     <textarea id="IssueDetails" name="IssueDetails" placeholder="Whats the issue.."></textarea>
       <br />
 
+      <asp:Button ID="Button1" runat="server" Text="Button" />
 
       
-      <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
   
   </form>
 </div>
